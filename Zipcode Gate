@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Depot Service Code Entry</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        input[type="text"] {
+            width: 150px;
+            padding: 10px;
+            font-size: 16px;
+            margin-right: 10px;
+        }
+        button {
+            padding: 10px 15px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Enter Your 5-Digit ZipCode</h1>
+    <input type="text" id="codeInput" maxlength="5" placeholder="Enter code">
+    <button id="submitBtn">Submit</button>
+
+    <script>
+        document.getElementById('submitBtn').addEventListener('click', function() {
+            const code = document.getElementById('codeInput').value;
+            const baseUrl = 'https://services.homedepot.com/services/serviceconnect/1937/';
+            const suffix = '/ejs300h/';
+            
+            // Check if the code is 5 digits
+            if (code.length === 5 && /^\d+$/.test(code)) {
+                const newUrl = baseUrl + code + suffix;
+                window.location.href = newUrl; // Redirect to the new URL
+            } else {
+                alert('Please enter a valid 5-digit code.');
+            }
+        });
+    </script>
+</body>
+</html>
